@@ -1,2 +1,2 @@
-src/main/com/github/hcsp/maven/Version.java
+src/main/java/com/github/hcsp/maven/Version.java
 pom.xml
