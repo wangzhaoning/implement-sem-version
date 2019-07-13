@@ -1,0 +1,2 @@
+src/main/com/github/hcsp/maven/Version.java
+pom.xml
