@@ -45,7 +45,7 @@ public class VersionTest {
         "1.0,   1, 0, 0",
         "1.1,   1, 1, 0",
         "1.2,   1, 2, 0",
-        "0.0,   0, 0, 1",
+        "0.0,   0, 0, 0",
         "0.99,  0, 99,0",
     })
     public void majorMinorPatchVersionTest(String version, int major, int minor, int patch) {
