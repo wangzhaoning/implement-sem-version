@@ -10,17 +10,15 @@ public class Version implements Comparable<Version> {
      * 正则表达式：验证版本号是否合法
      */
     private static final String REGEX_VERSION = "\\d+(\\.\\d+){0,2}";
-    private String revisedVersion;
 
     private com.github.zafarkhaja.semver.Version innerVersion;
+
     /** 请根据语义化版本的要求 https://semver.org/lang/zh-CN/ ，实现一个可以进行比较的"语义化版本" */
     private Version(String version) {
-        if(isVerifyVersion(version)){
-            revisedVersion = Version.getRevisedVersion(version);
-            innerVersion = com.github.zafarkhaja.semver.Version.valueOf(revisedVersion);
-        }else{
-            throw new IllegalArgumentException();
-        }
+
+        if(!isVerifyVersion(version)){ throw new IllegalArgumentException(); }
+
+        innerVersion = com.github.zafarkhaja.semver.Version.valueOf(Version.getRevisedVersion(version));
     }
 
     /**
@@ -91,12 +89,11 @@ public class Version implements Comparable<Version> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Version version = (Version) o;
-        return Objects.equals(revisedVersion, version.revisedVersion) &&
-                Objects.equals(innerVersion, version.innerVersion);
+        return Objects.equals(innerVersion, version.innerVersion);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(revisedVersion, innerVersion);
+        return Objects.hash(innerVersion);
     }
 }
