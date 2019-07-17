@@ -1,7 +1,7 @@
+
+
 package com.github.hcsp.maven;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
@@ -11,12 +11,13 @@ public class Version implements Comparable<Version> {
      */
     private static final String REGEX_VERSION = "\\d+(\\.\\d+){0,2}";
     private String revisedVersion;
-    com.github.zafarkhaja.semver.Version innnerVersion;
+
+    private com.github.zafarkhaja.semver.Version innerVersion;
     /** 请根据语义化版本的要求 https://semver.org/lang/zh-CN/ ，实现一个可以进行比较的"语义化版本" */
     private Version(String version) {
         if(isVerifyVersion(version)){
             revisedVersion = Version.getRevisedVersion(version);
-            innnerVersion = com.github.zafarkhaja.semver.Version.valueOf(revisedVersion);
+            innerVersion = com.github.zafarkhaja.semver.Version.valueOf(revisedVersion);
         }else{
             throw new IllegalArgumentException();
         }
@@ -36,24 +37,26 @@ public class Version implements Comparable<Version> {
 
     /** @return 该版本的主版本号 */
     public int getMajorVersion() {
-        return innnerVersion.getMajorVersion();
+        return innerVersion.getMajorVersion();
     }
 
     /** @return 该版本的次版本号 */
     public int getMinorVersion() {
-        return innnerVersion.getMinorVersion();
+        return innerVersion.getMinorVersion();
     }
 
     /** @return 该版本的修订版本号 */
     public int getPatchVersion() {
-        return innnerVersion.getPatchVersion();
+        return innerVersion.getPatchVersion();
+    }
+
+    public com.github.zafarkhaja.semver.Version getInnerVersion() {
+        return innerVersion;
     }
 
     @Override
-    public int compareTo(Version o) {
-        int intParamVersion = Integer.parseInt(o.revisedVersion.replace(".",""));
-        int intCurrentObjVersion = Integer.parseInt(this.revisedVersion.replace(".",""));
-        return intCurrentObjVersion - intParamVersion;
+    public int compareTo(Version other) {
+        return innerVersion.compareTo(other.getInnerVersion());
     }
 
     private static boolean isVerifyVersion(String version) {
@@ -62,23 +65,25 @@ public class Version implements Comparable<Version> {
 
     private static String getRevisedVersion(String version){
         String [] versions = version.split("\\.");
-        Map<Integer,String> map = new HashMap<>();
+        String result;
+
         switch (versions.length){
             case 1:{
-                map.put(1,versions[0]+".0.0");
+                result = versions[0] + ".0.0";
                 break;
             }
             case 2:{
-                map.put(2,versions[0] + "." + versions[1] + ".0");
+                result = versions[0] + "." + versions[1] + ".0";
                 break;
             }
             case 3:{
-                map.put(3,version);
+                result = version;
                 break;
             }
+            default:
+                throw new IllegalArgumentException();
         }
-
-        return map.get(versions.length);
+        return result;
     }
 
     @Override
@@ -87,11 +92,11 @@ public class Version implements Comparable<Version> {
         if (o == null || getClass() != o.getClass()) return false;
         Version version = (Version) o;
         return Objects.equals(revisedVersion, version.revisedVersion) &&
-                Objects.equals(innnerVersion, version.innnerVersion);
+                Objects.equals(innerVersion, version.innerVersion);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(revisedVersion, innnerVersion);
+        return Objects.hash(revisedVersion, innerVersion);
     }
 }
