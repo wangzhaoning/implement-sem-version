@@ -93,7 +93,5 @@ public class Version implements Comparable<Version> {
     public boolean equals(Object obj) {
         Version o = (Version)obj;
         return this.majorVersion == o.getMajorVersion() && this.minorVersion == o.minorVersion && this.patchVersion == o.getPatchVersion();
-
-
     }
 }
