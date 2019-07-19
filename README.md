@@ -2,7 +2,7 @@
 
 之所以要出这么一道题，是因为很多年前我在面试时被要求手写一个[语义化版本](https://semver.org/lang/zh-CN/)的实现。
 
-请实现一个[`Version`](https://github.com/hcsp/implement-sem-version/blob/master/src/main/java/com/github/hcsp/maven/Version.java)。注意，在这个过程中，你可以在两种方法中二选一：
+请实现一个[`Version.compare`](https://github.com/hcsp/implement-sem-version/blob/master/src/main/java/com/github/hcsp/maven/Version.java)。注意，在这个过程中，你可以在两种方法中二选一：
 
 - 自己造一个轮子。
 - 或者通过自己的搜索，使用别人已经造好的轮子（语义化版本这样通用的东西肯定有人实现过），但是要把别人的轮子适配到我们要求的[`Version`](https://github.com/hcsp/implement-sem-version/blob/master/src/main/java/com/github/hcsp/maven/Version.java)中。
