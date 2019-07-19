@@ -4,7 +4,7 @@ public class Version {
     /**
      * 请根据语义化版本的要求 https://semver.org/lang/zh-CN/ ，比较两个"语义化版本"
      *
-     * <p>传入两个个形如x.y.z的字符串，比较两个语义化版本的大小。如果version1 &lt; version2，返回-1；如果version1 &gth;
+     * <p>传入两个形如x.y.z的字符串，比较两个语义化版本的大小。如果version1小于version2，返回-1；如果version1大于
      * version2，返回1。如果二者相等，返回0。
      *
      * <p>注意，如果传入的字符串形如x，则其等价于x.0.0。 如果传入的字符串形如x.y，则其等价于x.y.0。
