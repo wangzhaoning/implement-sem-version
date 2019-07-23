@@ -1,6 +1,6 @@
 package com.github.hcsp.maven;
 
-        import java.util.Arrays;
+import java.util.Arrays;
 
 public class Version {
     /**
