@@ -19,15 +19,15 @@ public class Version {
      */
     public static int compare(String version1, String version2) {
         List<String> version1AsList = Arrays.asList(version1.split("\\."));
-        ArrayList<String> newVersion1AsList= new ArrayList<>(version1AsList);
+        ArrayList<String> newVersion1AsList = new ArrayList<>(version1AsList);
         List<String> version2AsList = Arrays.asList(version2.split("\\."));
-        ArrayList<String> newVersion2AsList=new ArrayList(version2AsList);
+        ArrayList<String> newVersion2AsList = new ArrayList(version2AsList);
         int largeVersionNumber = Math.max(newVersion1AsList.size(), newVersion2AsList.size());
         if (newVersion1AsList.size() < largeVersionNumber) {
-            formatVersion(newVersion1AsList,largeVersionNumber);
+            formatVersion(newVersion1AsList, largeVersionNumber);
         } else formatVersion(newVersion2AsList, largeVersionNumber);
 
-        for (int i = 0; i <largeVersionNumber; i++) {
+        for (int i = 0; i < largeVersionNumber; i++) {
             if (Integer.parseInt(newVersion1AsList.get(i)) > Integer.parseInt(newVersion2AsList.get(i))) {
                 return 1;
             } else if (Integer.parseInt(newVersion1AsList.get(i)) < Integer.parseInt(newVersion2AsList.get(i))) {
@@ -38,7 +38,7 @@ public class Version {
     }
 
     private static void formatVersion(List<String> version, int Number) {
-        for (int i = version.size(); i <Number; i++) {
+        for (int i = version.size(); i < Number; i++) {
             version.add(String.valueOf(0));
         }
     }
