@@ -21,7 +21,9 @@ class Version {
         List<String> newVersion1AsList = new ArrayList<>(Arrays.asList(version1.split("\\.")));
         List<String> newVersion2AsList = new ArrayList<>(Arrays.asList(version2.split("\\.")));
         int largeVersionNumber = Math.max(newVersion1AsList.size(), newVersion2AsList.size());
-        if (newVersion1AsList.size() < largeVersionNumber) formatVersion(newVersion1AsList, largeVersionNumber);
+        if (newVersion1AsList.size() < largeVersionNumber){
+            formatVersion(newVersion1AsList, largeVersionNumber);
+        }
         else {
             formatVersion(newVersion2AsList, largeVersionNumber);
         }
