@@ -21,7 +21,7 @@ public class Version {
         ArrayList<String> array2 = new ArrayList<>(Arrays.asList(version2.split("\\.")));
         int size1 = array1.size();
         int size2 = array2.size();
-        int MaxLength = Math.max(size1, size2);//这个空格令人烦躁
+        int MaxLength = Math.max(size1, size2);
 
         while (MaxLength > array1.size()) {
             array1.add("0");
