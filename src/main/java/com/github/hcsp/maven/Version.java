@@ -17,31 +17,6 @@ public class Version {
      * @return -1/0/1 当version1 小于/等于/大于 version2时
      */
 
-    private static int calcWeight(String version) {
-        // 对版本号进行加权，x y z 分别对应 百 十 个
-        int weight = 0;
-        String[] versionArr = version.split("\\."); // ["12", "0", "5"]
-        for (int i = versionArr.length - 1; i >= 0; i--) {
-            weight += Integer.valueOf(versionArr[i]) * (Math.pow(10, i));
-        }
-        return weight;
-    }
-//
-    private static int compareHelper(List<String> vArr1, List<String> vArr2) {
-        for (int i = 0; i < 3; i++) {
-            int v1 = Integer.parseInt(vArr1.get(i));
-            int v2 = Integer.parseInt(vArr2.get(i));
-            if (v1 < v2) {
-                return -1;
-            } else if (v1 > v2) {
-                return 1;
-            } else if (i == 2) {
-                return 0;
-            }
-        }
-        return 0;
-    }
-
     private static List<String> stylizeVersion(String version) {
         List<String> vList = new ArrayList<>();
         for (String v : version.split("\\.")) {
@@ -57,10 +32,17 @@ public class Version {
     }
 
     public static int compare(String version1, String version2) {
-        return compareHelper(stylizeVersion(version1), stylizeVersion(version2));
-    }
-
-    public static void main(String[] args) {
-        System.out.println(compare("1.2", "1.2.1"));
+        for (int i = 0; i < 3; i++) {
+            int v1 = Integer.parseInt(stylizeVersion(version1).get(i));
+            int v2 = Integer.parseInt(stylizeVersion(version2).get(i));
+            if (v1 < v2) {
+                return -1;
+            } else if (v1 > v2) {
+                return 1;
+            } else if (i == 2) {
+                return 0;
+            }
+        }
+        return 0;
     }
 }
