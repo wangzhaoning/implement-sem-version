@@ -1,6 +1,7 @@
 package com.github.hcsp.maven;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Version {
@@ -18,14 +19,8 @@ public class Version {
      */
 
     private static List<String> stylizeVersion(String version) {
-        List<String> vList = new ArrayList<>();
-        for (String v : version.split("\\.")) {
-            vList.add(v);
-        }
-        if (vList.size() == 1) {
-            vList.add("0");
-            vList.add("0");
-        } else if (vList.size() == 2) {
+        List<String> vList = new ArrayList<>(Arrays.asList(version.split("\\.")));
+        while (vList.size() < 3) {
             vList.add("0");
         }
         return vList;
@@ -39,8 +34,6 @@ public class Version {
                 return -1;
             } else if (v1 > v2) {
                 return 1;
-            } else if (i == 2) {
-                return 0;
             }
         }
         return 0;
