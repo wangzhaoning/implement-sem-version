@@ -1,5 +1,8 @@
 package com.github.hcsp.maven;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Version {
     /**
      * 请根据语义化版本的要求 https://semver.org/lang/zh-CN/ ，比较两个"语义化版本"
@@ -13,5 +16,33 @@ public class Version {
      * @param version2 传入的版本字符串2，支持x/x.y/x.y.z，你可以假定传入的字符串一定是合法的语义化版本
      * @return -1/0/1 当version1 小于/等于/大于 version2时
      */
-    public static int compare(String version1, String version2) {}
+
+    private static List<String> stylizeVersion(String version) {
+        List<String> vList = new ArrayList<>();
+        for (String v : version.split("\\.")) {
+            vList.add(v);
+        }
+        if (vList.size() == 1) {
+            vList.add("0");
+            vList.add("0");
+        } else if (vList.size() == 2) {
+            vList.add("0");
+        }
+        return vList;
+    }
+
+    public static int compare(String version1, String version2) {
+        for (int i = 0; i < 3; i++) {
+            int v1 = Integer.parseInt(stylizeVersion(version1).get(i));
+            int v2 = Integer.parseInt(stylizeVersion(version2).get(i));
+            if (v1 < v2) {
+                return -1;
+            } else if (v1 > v2) {
+                return 1;
+            } else if (i == 2) {
+                return 0;
+            }
+        }
+        return 0;
+    }
 }
