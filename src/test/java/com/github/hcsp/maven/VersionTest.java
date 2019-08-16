@@ -14,7 +14,7 @@ public class VersionTest {
         "1.2,   1.2.0",
         "1.2.1, 1.2.1",
     })
-    public void supportShortVersion(String a, String b) throws Exception {
+    public void supportShortVersion(String a, String b)  {
         Assertions.assertEquals(0, Version.compare(a, b));
         Assertions.assertEquals(0, Version.compare(b, a));
     }
@@ -28,7 +28,7 @@ public class VersionTest {
         "0.0,   0.0.1",
         "0.19,  0.101",
     })
-    public void compareTest(String a, String b) throws Exception {
+    public void compareTest(String a, String b)  {
         Assertions.assertTrue(Version.compare(a, b) < 0);
         Assertions.assertTrue(Version.compare(b, a) > 0);
     }
