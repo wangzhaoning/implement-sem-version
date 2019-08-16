@@ -16,7 +16,7 @@ public class Version {
      * @param version2 传入的版本字符串2，支持x/x.y/x.y.z，你可以假定传入的字符串一定是合法的语义化版本
      * @return -1/0/1 当version1 小于/等于/大于 version2时
      */
-    public static int compare(String version1, String version2)  {
+    public static int compare(String version1, String version2) {
         ArrayList<String> versionArr1 = new ArrayList<>(Arrays.asList(version1.split("\\.")));
         ArrayList<String> versionArr2 = new ArrayList<>(Arrays.asList(version2.split("\\.")));
 
@@ -42,6 +42,7 @@ public class Version {
 
         return 0;
     }
+
     public static void main(String[] args) {
         System.out.println(compare("1.11.30", "1.13.25"));
     }
