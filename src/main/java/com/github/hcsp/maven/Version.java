@@ -1,11 +1,10 @@
 package com.github.hcsp.maven;
 
-import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static java.lang.Integer.parseInt;
+
 
 public class Version {
     /**
@@ -38,23 +37,18 @@ public class Version {
         }
 
         for (int i = 0; i < len; i++) {
-            if (Integer.parseInt(version1_arr.get(i))<Integer.parseInt(version2_arr.get(i)))
+            if (Integer.parseInt(version1_arr.get(i))<Integer.parseInt(version2_arr.get(i))){
                 return -1;
+            }
 
-            if (Integer.parseInt(version1_arr.get(i))>Integer.parseInt(version2_arr.get(i)))
+            if (Integer.parseInt(version1_arr.get(i))>Integer.parseInt(version2_arr.get(i))) {
                 return 1;
+            }
         }
 
         return 0;
 
     }
 
-//    @Test
-//    public void test(){
-//        System.out.println(compare("1.2.","1.2.3"));
-//        System.out.println(compare("1.0.0","1"));
-//        System.out.println(compare("0.0.1","0.0"));
-//
-//    }
 
 }
