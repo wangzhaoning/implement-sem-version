@@ -31,7 +31,7 @@ public class Version {
             int v2 = Integer.parseInt(stylizeVersion(version2).get(i));
             if (v1 < v2) {
                 return -1;
-            } else if (v1 > v2) {
+            }  if (v1 > v2) {
                 return 1;
             }
         }
