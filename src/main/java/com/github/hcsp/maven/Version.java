@@ -18,30 +18,30 @@ public class Version {
      * @return -1/0/1 当version1 小于/等于/大于 version2时
      */
     public static void main(String[] args) {
-        compare("2.1.3","2.1.2");
+        compare("0.1.2", "2.1.2");
     }
-    private static List<String>  difficultVersion (String version){
-        List<String>  data=new ArrayList<>(Arrays.asList(version.split("\\.")));
-        while (data.size()<3){
+    private static List<String> difficultVersion(String version) {
+        List<String> data = new ArrayList<>(Arrays.asList(version.split("\\.")));
+        while (data.size() < 3) {
             data.add("0");
         }
         return data;
     }
     public static int compare(String version1, String version2) {
-          for (int i=0;i<3;i++){
-              int v1=Integer.parseInt(difficultVersion(version1).get(i));
-              int v2=Integer.parseInt(difficultVersion(version2).get(i));
-             if (v1<v2){
-                 System.out.println(version1+"<"+version2);
-                 return -1;
-             }else if (v1>v2){
-                  System.out.println(version1+">"+version2);
-                 return 1;
-              }
-             else{
-                  System.out.println(version1+">"+version2);
-                 return 0;}
-          }
-          return 0;
-}
+        for (int i = 0; i < 3; i++) {
+            int v1 = Integer.parseInt(difficultVersion(version1).get(i));
+            int v2 = Integer.parseInt(difficultVersion(version2).get(i));
+            if (v1 < v2) {
+                System.out.println(version1 + "<" + version2);
+                return -1;
+            }
+            else if (v1 > v2) {
+                System.out.println(version1 + ">" + version2);
+                return 1;
+            }
+
+        }
+        System.out.println(version1 + "=" + version2);
+        return 0;
+    }
 }
