@@ -35,7 +35,7 @@ public class Version {
                 System.out.println(version1 + "<" + version2);
                 return -1;
             }
-            else if (v1 > v2) {
+            if (v1 > v2) {
                 System.out.println(version1 + ">" + version2);
                 return 1;
             }
