@@ -18,7 +18,7 @@ public class Version {
      * @return -1/0/1 当version1 小于/等于/大于 version2时
      */
     public static int compare(String version1, String version2) {
-        if(version1.equals(version2)) return 0;
+        if(version1.equals(version2)) {return 0;}
         List<Integer> v1=new ArrayList<>();
         List<Integer> v2=new ArrayList<>();
         StringTokenizer stv1=new StringTokenizer(version1,".");
@@ -32,8 +32,8 @@ public class Version {
         convert(v1);
         convert(v2);
         for(int i=0;i<v1.size();i++){
-            if(v1.get(i)>v2.get(i))return 1;
-            else if(v1.get(i)<v2.get(i)) return -1;
+            if(v1.get(i)>v2.get(i)){return 1;}
+            else if(v1.get(i)<v2.get(i)) {return -1;}
         }
         return 0;
     }
