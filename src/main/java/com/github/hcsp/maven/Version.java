@@ -24,9 +24,9 @@ public class Version {
         List<Integer> v1 = Arrays.stream(version1.split("\\.")).map(Integer::parseInt).collect(Collectors.toList());
         List<Integer> v2 = Arrays.stream(version2.split("\\.")).map(Integer::parseInt).collect(Collectors.toList());
 
-        int length= Math.max(v1.size(), v1.size());
-        convert(v1,length);
-        convert(v2,length);
+        int length = Math.max(v1.size(), v1.size());
+        convert(v1, length);
+        convert(v2, length);
         for (int i = 0; i < length; i++) {
             if (v1.get(i) > v2.get(i)) {
                 return 1;
@@ -37,7 +37,7 @@ public class Version {
         return 0;
     }
 
-    private static void convert(List<Integer> v,int length) {
+    private static void convert(List<Integer> v, int length) {
         while (v.size() != length) {
             v.add(0);
         }
