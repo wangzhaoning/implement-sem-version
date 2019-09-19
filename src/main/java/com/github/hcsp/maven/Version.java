@@ -1,8 +1,8 @@
 package com.github.hcsp.maven;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.StringTokenizer;
+import java.util.stream.Collectors;
 
 public class Version {
     /**
@@ -21,16 +21,8 @@ public class Version {
         if (version1.equals(version2)) {
             return 0;
         }
-        List<Integer> v1 = new ArrayList<>();
-        List<Integer> v2 = new ArrayList<>();
-        StringTokenizer stv1 = new StringTokenizer(version1, ".");
-        while (stv1.hasMoreTokens()) {
-            v1.add(Integer.parseInt(stv1.nextToken()));
-        }
-        StringTokenizer stv2 = new StringTokenizer(version2, ".");
-        while (stv2.hasMoreTokens()) {
-            v2.add(Integer.parseInt(stv2.nextToken()));
-        }
+        List<Integer> v1 = Arrays.stream(version1.split("\\.")).map(Integer::parseInt).collect(Collectors.toList());
+        List<Integer> v2 = Arrays.stream(version2.split("\\.")).map(Integer::parseInt).collect(Collectors.toList());
         convert(v1);
         convert(v2);
         for (int i = 0; i < v1.size(); i++) {
@@ -44,9 +36,8 @@ public class Version {
     }
 
     private static void convert(List<Integer> v) {
-        if (v.size() < 3) {
+        while (v.size() != 3) {
             v.add(0);
-            convert(v);
         }
     }
 }
